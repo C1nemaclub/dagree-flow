@@ -277,7 +277,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '9-16',
+      id: '9-16-left',
       source: '9',
       sourceHandle: '9-left',
       target: '16',
@@ -286,7 +286,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '9-16',
+      id: '9-16-right',
       source: '9',
       sourceHandle: '9-right',
       target: '16',
@@ -295,7 +295,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '14-17',
+      id: '14-17-right',
       source: '14',
       sourceHandle: '14-right',
       target: '17',
@@ -304,7 +304,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '14-17',
+      id: '14-17-left',
       source: '14',
       sourceHandle: '14-left',
       target: '17',
@@ -313,7 +313,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '13-18',
+      id: '13-18-right',
       source: '13',
       sourceHandle: '13-right',
       target: '18',
@@ -331,7 +331,7 @@ export const initialWorkflowState: WorkflowReducerState = {
       type: 'step',
     },
     {
-      id: '15-19',
+      id: '15-19-right',
       source: '15',
       sourceHandle: '15-right',
       target: '19',

@@ -44,7 +44,7 @@ const LoopNode = ({ id, data }: NodeProps) => {
         type='source'
         position={Position.Right}
         style={{
-          background: 'red',
+          background: 'purple',
           width: '20px',
           height: '20px',
           top: '30%',
