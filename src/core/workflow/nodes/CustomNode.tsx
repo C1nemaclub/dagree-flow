@@ -9,12 +9,12 @@ const CustomNode = ({ id, data }: NodeProps) => {
       <div
         style={{
           padding: '10px',
-          background: '#fff',
           borderRadius: '5px',
           border: '1px solid #222',
           color: '#222',
           textAlign: 'center',
           width: '200px',
+          backgroundColor: id === '10' || id === '24' ? 'red' : '#fff',
         }}>
         {id}
         <p>{data.label}</p>

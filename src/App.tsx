@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
   addEdge,
   Background,
@@ -10,11 +10,14 @@ import './App.css';
 import { workflowActions } from './context/utils/types';
 import useWorkflow from './context/utils/useWorkflow';
 import { nodeTypes } from './core/workflow/utils/constants';
+import layoutElkjs from './utils/elk';
 import { layoutElements } from './utils/functions';
 
 function App() {
   const { state, dispatch } = useWorkflow();
   const [newName, setNewName] = useState('');
+  const [elkNodes, setElkNodes] = useState(state.nodes);
+  const [elkEdges, setElkEdges] = useState(state.edges);
 
   const onConnect = (connection: Connection) => {
     const newEdge = addEdge(connection, state.edges);
@@ -26,8 +29,20 @@ function App() {
     []
   );
 
-  console.log(layoutedNodes);
+  // console.log(layoutedNodes);
   console.log(layoutedEdges);
+
+  // const data = layoutElementsFlex(state.nodes, '1', 'TB', state.edges);
+  // console.log(data, 'Datita');
+
+  const handleELk = async () => {
+    const elk = await layoutElkjs(state.nodes, state.edges, 'DOWN');
+    setElkNodes(elk.nodes);
+    setElkEdges(elk.edges);
+  };
+  useEffect(() => {
+    handleELk();
+  }, []);
 
   return (
     <div
@@ -42,7 +57,7 @@ function App() {
         <h3>{state.name}</h3>
         <ReactFlow
           nodeTypes={nodeTypes}
-          nodes={layoutedNodes}
+          nodes={elkNodes}
           edges={layoutedEdges}
           onConnect={onConnect}
           onNodesChange={(changes) =>

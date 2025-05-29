@@ -13,6 +13,7 @@ const RegularNode = ({ id, data }: NodeProps) => {
           color: '#222',
           textAlign: 'center',
           width: '200px',
+          backgroundColor: id === '10' || id === '24' ? 'lightblue' : '#fff',
         }}>
         {id}
         <p>{data.label}</p>

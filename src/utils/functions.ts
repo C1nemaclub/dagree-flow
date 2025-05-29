@@ -1,11 +1,11 @@
 import dagre from 'dagre';
-import { Edge, getConnectedEdges, Node, Position } from 'reactflow';
+import { Edge, Node, Position } from 'reactflow';
 export const createRandomString = () => {
   return Math.random().toString(36).substring(2, 15);
 };
 
-const offsetX = 300;
-const offsetY = 200;
+const widthX = 300;
+const heightY = 200;
 
 export function layoutElements(
   nodes: Node[],
@@ -18,7 +18,7 @@ export function layoutElements(
 
   // Add nodes with dimensions
   nodes.forEach((node) => {
-    dagreGraph.setNode(node.id, { width: offsetX, height: offsetY });
+    dagreGraph.setNode(node.id, { width: widthX, height: heightY });
   });
 
   // Add edges
@@ -32,22 +32,14 @@ export function layoutElements(
   // Apply layout to nodes
   const layoutedNodes = nodes.map((node) => {
     const pos = dagreGraph.node(node.id);
-    const connectedEdges = getConnectedEdges([node], edges);
-
-    const isConditional = connectedEdges.some((edge) =>
-      edge.sourceHandle?.includes('start')
-    );
-    const isNotLoop = node.type !== 'loopNode';
-
-    const extraX = isConditional && isNotLoop ? 150 : 0;
 
     return {
       ...node,
-      position: { x: pos.x - offsetX / 2 + extraX, y: pos.y - offsetY / 2 },
-      // sourcePosition: Position.Bottom,
-      // targetPosition: Position.Top,
-      sourcePosition: isConditional ? Position.Right : Position.Bottom,
-      targetPosition: isConditional ? Position.Left : Position.Top,
+      position: { x: pos.x - widthX / 2, y: pos.y - heightY / 2 },
+      sourcePosition: Position.Bottom,
+      targetPosition: Position.Top,
+      // sourcePosition: isConditional ? Position.Right : Position.Bottom,
+      // targetPosition: isConditional ? Position.Left : Position.Top,
     };
   });
 
