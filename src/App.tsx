@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ReactFlow, {
   addEdge,
   Background,
@@ -10,6 +10,7 @@ import './App.css';
 import { workflowActions } from './context/utils/types';
 import useWorkflow from './context/utils/useWorkflow';
 import { nodeTypes } from './core/workflow/utils/constants';
+import getLayoutedElements from './utils/d3';
 import layoutElkjs from './utils/elk';
 import { layoutElements } from './utils/functions';
 
@@ -30,7 +31,7 @@ function App() {
   );
 
   // console.log(layoutedNodes);
-  console.log(layoutedEdges);
+  // console.log(layoutedEdges);
 
   // const data = layoutElementsFlex(state.nodes, '1', 'TB', state.edges);
   // console.log(data, 'Datita');
@@ -43,6 +44,34 @@ function App() {
   useEffect(() => {
     handleELk();
   }, []);
+
+  const isGraphLoaded = !!document.querySelector(
+    `[data-id="${elkNodes[0].id}"]`
+  );
+
+  const onLayout = useCallback((direction) => {
+    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+      elkNodes,
+      elkEdges,
+      {
+        direction,
+      }
+    );
+
+    setElkNodes([...layoutedNodes]);
+    setElkEdges([...layoutedEdges]);
+
+    window.requestAnimationFrame(() => {
+      // fitView();
+    });
+  }, []);
+
+  // Calculate the initial layout on mount.
+  useEffect(() => {
+    if (isGraphLoaded) {
+      // onLayout();
+    }
+  }, [isGraphLoaded]);
 
   return (
     <div

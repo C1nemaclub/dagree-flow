@@ -17,6 +17,7 @@ const FinallyNode = ({ id, data }: NodeProps) => {
         {id}
         <p>{data.label}</p>
         FINALLY Node
+        {/* <pre>{JSON.stringify({ x: data._elkPorts }, null, 2)}</pre> */}
       </div>
       <Handle
         id={`${id}-left`}
@@ -41,7 +42,7 @@ const FinallyNode = ({ id, data }: NodeProps) => {
         }}
       />
       <Handle
-        id={id}
+        id={`${id}-source`}
         type='source'
         position={Position.Bottom}
         style={{

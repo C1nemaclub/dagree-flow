@@ -2,6 +2,8 @@ import { Handle, Position, type NodeProps } from 'reactflow';
 
 const LoopNode = ({ id, data }: NodeProps) => {
   //   const { dispatch } = useWorkflow();
+  console.log(data._elkPorts);
+
   return (
     <>
       <div
@@ -17,9 +19,11 @@ const LoopNode = ({ id, data }: NodeProps) => {
         {id}
         <p>{data.label}</p>
         Regular Node
+        {/* <pre>{JSON.stringify({ x: data._elkPorts }, null, 2)}</pre> */}
+        {/* <pre>{JSON.stringify({ id }, null, 2)}</pre> */}
       </div>
       <Handle
-        id={id}
+        id={`${id}-target`}
         type='target'
         position={Position.Top}
         style={{
@@ -29,11 +33,11 @@ const LoopNode = ({ id, data }: NodeProps) => {
         }}
       />
       <Handle
-        id={id}
+        id={`${id}-source`}
         type='source'
         position={Position.Bottom}
         style={{
-          background: 'red',
+          background: 'yellow',
           width: '20px',
           height: '20px',
           left: '20%',

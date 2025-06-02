@@ -28,10 +28,12 @@ const CustomNode = ({ id, data }: NodeProps) => {
             });
           }}>
           Create node below
+          {/* <pre>{JSON.stringify({ x: data._elkPorts }, null, 2)}</pre> */}
         </button>
       </div>
       <Handle
         type='target'
+        id={`${id}-target`}
         position={Position.Top}
         style={{ background: '#555' }}
       />

@@ -2,6 +2,7 @@ import { Handle, Position, type NodeProps } from 'reactflow';
 
 const RegularNode = ({ id, data }: NodeProps) => {
   //   const { dispatch } = useWorkflow();
+
   return (
     <>
       <div
@@ -18,9 +19,11 @@ const RegularNode = ({ id, data }: NodeProps) => {
         {id}
         <p>{data.label}</p>
         Regular
+        {/* <pre>{JSON.stringify({ x: data._elkPorts }, null, 2)}</pre> */}
+        {/* <pre>{JSON.stringify({ id }, null, 2)}</pre> */}
       </div>
       <Handle
-        id={id}
+        id={`${id}-regulon-target`}
         type='target'
         position={Position.Top}
         style={{
@@ -30,7 +33,7 @@ const RegularNode = ({ id, data }: NodeProps) => {
         }}
       />
       <Handle
-        id={id}
+        id={`${id}-regulon-source`}
         type='source'
         position={Position.Bottom}
         style={{
